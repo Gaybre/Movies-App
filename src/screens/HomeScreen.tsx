@@ -7,14 +7,12 @@ import MovieList from '../components/MovieList';
 
 const HomeScreen = () => {
 
-  const { movies, isLoading } = useMovies();
   const { width: windowWidth } = useWindowDimensions();
+  const { nowPlaying, popular, topRated, upcoming, isLoading } = useMovies();
 
   if(isLoading) {
     return (
-      <View
-        style={styles.containerCenter}
-      >
+      <View style={styles.containerCenter} >
         <ActivityIndicator color='green' />
       </View>
     )
@@ -24,11 +22,9 @@ const HomeScreen = () => {
     <ScrollView>
 
       {/* Caorusel main */}
-      <View
-        style={styles.containerCarousel}
-      >
+      <View style={styles.containerCarousel} >
         <Carousel
-          data={ movies }
+          data={ nowPlaying }
           renderItem={ ({ item }) => <MovieCard movie={ item } /> }
           sliderWidth={ windowWidth }
           itemWidth={300}
@@ -36,14 +32,12 @@ const HomeScreen = () => {
         />
       </View>
 
-      {/* Caorusel main */}
-      <MovieList movies={ movies } title='En cartelera' />
-
-      {/* Caorusel main */}
-      <MovieList movies={ movies } title='En cartelera' />
-
-      {/* Caorusel main */}
-      <MovieList movies={ movies } title='En cartelera' />
+      {/* Populares */}
+      <MovieList movies={ popular } title='Populares' />
+      {/* Mejor Calificadas */}
+      <MovieList movies={ topRated } title='Mejor Calificadas' />
+      {/* Proximos lanzamientos */}
+      <MovieList movies={ upcoming } title='Proximos lanzamientos' />
 
     </ScrollView>
   )
