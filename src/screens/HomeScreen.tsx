@@ -1,8 +1,9 @@
 import React from 'react';
-import { ActivityIndicator, StyleSheet, useWindowDimensions, View, FlatList, Text } from 'react-native';
+import { ActivityIndicator, StyleSheet, useWindowDimensions, View, ScrollView } from 'react-native';
 import { useMovies } from '../hooks/useMovies';
-import MovieCard from '../components/MovieCard';
 import Carousel from 'react-native-snap-carousel';
+import MovieCard from '../components/MovieCard';
+import MovieList from '../components/MovieList';
 
 const HomeScreen = () => {
 
@@ -20,7 +21,7 @@ const HomeScreen = () => {
   }
 
   return (
-    <View>
+    <ScrollView>
 
       {/* Caorusel main */}
       <View
@@ -35,16 +36,16 @@ const HomeScreen = () => {
         />
       </View>
 
-      <View>
-        <Text>Populares</Text>
-        <FlatList
-          data={ movies }
-          renderItem={ ({ item }) => <MovieCard movie={ item } width={150} height={200} /> }
-          horizontal
-        />
-      </View>
+      {/* Caorusel main */}
+      <MovieList movies={ movies } title='En cartelera' />
 
-    </View>
+      {/* Caorusel main */}
+      <MovieList movies={ movies } title='En cartelera' />
+
+      {/* Caorusel main */}
+      <MovieList movies={ movies } title='En cartelera' />
+
+    </ScrollView>
   )
 }
 
